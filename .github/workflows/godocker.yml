@@ -1,0 +1,19 @@
+name: GODOCKER
+#main 브랜치에 push를 하거나 pull_request를 할때 동작
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      -uses: accounts/checkout@v3
+      -name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.15
+        -name: Build
+          run: go build -v ./..
